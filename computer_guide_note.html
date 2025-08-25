@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Памятка по компьютеру</title>
+    <style>
+      :root {
+        --radius: 12px;
+        --card-bg: #ffffff;
+        --card-br: #e7eaf0;
+        --shadow: 0 2px 8px rgba(16, 24, 40, 0.06);
+        --shadow-hover: 0 6px 20px rgba(16, 24, 40, 0.1);
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background: #f7f9fc;
+        color: #222;
+        margin: 0;
+        padding: 28px 20px 48px;
+      }
+      h1 {
+        text-align: center;
+        color: #1f2937;
+        margin: 0 0 18px;
+      }
+      h2,
+      h3 {
+        color: #374151;
+      }
+
+      /* Карточки разделов */
+      details {
+        background: var(--card-bg);
+        border: 1px solid var(--card-br);
+        border-radius: var(--radius);
+        margin: 18px auto;
+        padding: 14px 18px;
+        max-width: 980px;
+        box-shadow: var(--shadow);
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+      }
+      details:hover {
+        box-shadow: var(--shadow-hover);
+        transform: translateY(-1px);
+      }
+      details[open] {
+        animation: fadeIn 0.25s ease;
+      }
+
+      summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 6px 0;
+        user-select: none;
+        font-weight: 700;
+        font-size: 1.06rem;
+        color: #111827;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      details summary::-webkit-details-marker {
+        display: none;
+      }
+
+      /* Градиент только на ТЕКСТ, эмодзи отдельно */
+      .grad {
+        display: inline-block;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+      }
+      .grad-1 {
+        background-image: linear-gradient(90deg, #ff3b3b, #ff8a00);
+      }
+      .grad-2 {
+        background-image: linear-gradient(90deg, #ff8a00, #ffd400);
+      }
+      .grad-3 {
+        background-image: linear-gradient(90deg, #ffd400, #23c552);
+      }
+      .grad-4 {
+        background-image: linear-gradient(90deg, #23c552, #2f80ed);
+      }
+      .grad-5 {
+        background-image: linear-gradient(90deg, #2f80ed, #6a5acd);
+      }
+      .grad-6 {
+        background-image: linear-gradient(90deg, #6a5acd, #bb6bd9);
+      }
+      .emoji {
+        display: inline-block;
+      }
+
+      @supports not (
+        (-webkit-background-clip: text) or (background-clip: text)
+      ) {
+        .grad-1 {
+          color: #ff4d4d;
+        }
+        .grad-2 {
+          color: #ff9f1a;
+        }
+        .grad-3 {
+          color: #d4a800;
+        }
+        .grad-4 {
+          color: #2fa86a;
+        }
+        .grad-5 {
+          color: #3e6ae1;
+        }
+        .grad-6 {
+          color: #7a67cc;
+        }
+      }
+
+      a {
+        color: #0b6bcb;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      code {
+        background: #f3f4f6;
+        padding: 2px 6px;
+        border-radius: 6px;
+        color: #b91c1c;
+      }
+      ul {
+        padding-left: 22px;
+        margin: 8px 0 0;
+      }
+      ul li {
+        margin: 6px 0;
+      }
+
+      /* Notion‑подобные callout – только для важного */
+      .callout {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        padding: 14px 16px;
+        margin: 14px 0;
+        border-radius: 10px;
+        background: #f8fafc;
+        border: 1px solid #e5e7eb;
+        box-shadow: var(--shadow);
+      }
+      .callout .icon {
+        font-size: 1.2rem;
+        line-height: 1;
+        margin-top: 1px;
+      }
+      .is-warning {
+        background: #fff7ed;
+        border-left: 6px solid #f59e0b;
+      }
+      .is-danger {
+        background: #fef2f2;
+        border-left: 6px solid #ef4444;
+      }
+      .is-success {
+        background: #ecfdf5;
+        border-left: 6px solid #10b981;
+      }
+      .is-info {
+        background: #eff6ff;
+        border-left: 6px solid #3b82f6;
+      }
+
+      /* Пошаговые списки (колонкой) */
+      .steps {
+        counter-reset: step;
+        padding-left: 0;
+        margin: 10px 0 0;
+      }
+      .steps li {
+        list-style: none;
+        counter-increment: step;
+        margin: 10px 0;
+        background: #fff;
+        border: 1px dashed #e5e7eb;
+        border-radius: 10px;
+        padding: 10px 12px;
+        box-shadow: var(--shadow);
+      }
+      .steps li::before {
+        content: counter(step) ". ";
+        font-weight: 700;
+        color: #334155;
+      }
+
+      /* Стили для копирайта */
+      .footer {
+        text-align: center;
+        margin-top: 32px;
+        font-size: 0.9rem;
+        color: #6b7280;
+      }
+      .footer a {
+        color: #0b6bcb;
+        font-weight: 600;
+      }
+      .footer a:hover {
+        text-decoration: underline;
+      }
+      .footer .telegram-icon {
+        vertical-align: middle;
+        margin-right: 4px;
+      }
+
+      /* Стили для мема */
+      .meme-container {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        gap: 16px;
+        align-items: center;
+        margin: 14px 0;
+      }
+      .meme {
+        max-width: 100px;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+      }
+
+      /* Адаптация для мобильных */
+      @media (max-width: 600px) {
+        .meme-container {
+          grid-template-columns: 1fr;
+          justify-items: center;
+        }
+        .meme {
+          margin-bottom: 10px;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-4px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>💻 Новый Windows 10 pro</h1>
+
+    <details>
+      <summary>
+        <span class="grad grad-1">Куда устанавливать приложения и игры?</span>
+      </summary>
+      <div class="callout is-warning">
+        <span class="icon">⚠️</span>
+        <div>
+          <b>ВСЕ УСТАНАВЛИВАТЬ НА ДИСК E:</b> (<a href="E:/Games" target="_blank">Игры</a>, <a href="E:/Progs" target="_blank">Программы</a>)
+        </div>
+      </div>
+
+      <div class="callout is-success">
+        <span class="icon">🛡️</span>
+        <div>
+          Перед установкой <b>каждый файл</b> проверяй на
+          <a href="https://virustotal.com/gui/" target="_blank">VirusTotal</a>.
+        </div>
+      </div>
+
+      <h3>Зачем это нужно?</h3>
+      <ul>
+        <li>Вредоносные программы (вирусы) могут заметно <b>тормозить</b> компьютер.</li>
+        <li>Майнеры используют ресурсы ПК 💸 и могут <b>перегревать/изнашивать</b> комплектующие.</li>
+        <li>Некоторые вирусы стирают данные с диска <b>C:</b> и делают систему нерабочей 🧱.</li>
+        <li>Есть риски <b>кражи аккаунтов</b>, почты и паролей.</li>
+      </ul>
+      <p>Часть вредоносных программ действует скрытно: удаляют свои следы, маскируются под системные процессы. Признаки: сильнее шумит и греется в простое, лагает без причины.</p>
+
+      <div class="callout is-danger">
+        <div class="meme-container">
+        <img src="https://i.pinimg.com/736x/0e/e0/7d/0ee07d567a956d30140272704eb352f9.jpg" alt="Мем Rutracker" class="meme">
+        <div>
+        <span class="icon">❌</span>
+        <div>Не запускай файлы с расширением <b>.bat</b> — в 99% случаев это вредоносные программы.</div>
+        </div>
+      </div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="grad grad-2">Где взять VPN?</span></summary>
+      <p>Используй приложение <b>Karing</b> (ярлык на рабочем столе)</p>
+    </details>
+
+    <details>
+      <summary><span class="grad grad-3">VPN не работает</span></summary>
+      <p><b>Телеграм‑бот:</b> <a href="https://t.me/hlvpnbot" target="_blank">@hlvpnbot</a></p>
+      <ol class="steps">
+        <li>Открой бота и нажми <b>Start</b>.</li>
+        <li>Выбери <b>Получить подписку</b> → <b>Free (EU)</b> → скопируй ссылку.</li>
+        <li>Открой <b>Karing</b> → <b>Добавить профиль</b> → <b>Добавление подписки</b>.</li>
+        <li>Вставь скопированную ссылку в поле «Ссылка на подписку».</li>
+        <li>Заполни «Примечание» (любым текстом) и нажми <b>Сохранить</b>.</li>
+        <li>Удалить <b>старый профиль</b> в Karing, чтобы не было конфликтов.</li>
+      </ol>
+    </details>
+
+    <details>
+      <summary>
+        <span class="grad grad-4">Хочу скачать платное приложение, но у меня нет денег</span><span class="emoji">🥲</span>
+      </summary>
+        <div class="callout is-warning">
+          <span class="icon">📥</span>
+          <div>
+            В <b>Chrome</b> уже установлено расширение для доступа к <b>Rutracker</b>. <b>Включи переключатель</b> (ползунок) в расширении → открой сайт → <b>зарегистрируйся</b>.
+            <br/> Теперь можно искать то, что нужно. Для скачивания файлов отсюда необходима еще одна программа.
+          </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="grad grad-5">Хочу скачать популярное приложение (Telegram...)</span>
+      </summary>
+        <div class="callout is-success">
+          <span class="icon">✅</span>
+          <div>Скачивай <b>только</b> с официальных сайтов.</div>
+      </div>
+      <h3>HTTPS vs HTTP — в чём разница?</h3>
+      <ul>
+        <li><b>HTTP</b> — данные передаются открыто. Кто угодно может подсмотреть или изменить информацию.</li>
+        <li><b>HTTPS</b> — данные зашифрованы. Рядом с адресом 🔒. Логины и пароли безопаснее.</li>
+        <li><b>Домен</b> — это имя сайта, которое ты видишь в адресной строке. Например, в <code>https://www.google.com</code> домен — <code>google.com</code>. Он показывает, к какому сайту ты обращаешься.</li>
+        <li><b>Важно:</b> Даже HTTPS не гарантирует, что сайт честный. Фишинговые сайты тоже могут иметь HTTPS. Всегда проверяй домен.</li>
+      </ul>
+      <div class="callout is-info">
+        <span class="icon">🔍</span>
+        <div>В поиске первые результаты часто реклама — проверяй подлинность сайтов (домен, https:// и значок замка).</div>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="grad grad-6">У меня проблема</span><span class="emoji">😓</span>
+      </summary>
+      <div class="callout is-info">
+       <div class="meme-container">
+        <img src="https://opis-cdn.tinkoffjournal.ru/mercury/003-okak.jpg" alt="Мем Окак" class="meme">
+        <div>
+         <span class="icon">🛠️</span>
+         <div>Пиши в Telegram <b>и</b> подключайся через <b>AnyDesk</b>.</div>
+        </div>
+        </div>
+      </div>
+    </details>
+
+    <div class="footer">
+      @2025 Система Безопасности Бабушкиного Компьютера | Поддержка 
+      <span class="telegram-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="14" height="14" viewBox="0 0 50 50" fill="#0b6bcb">
+          <path d="M25,2c12.703,0,23,10.297,23,23S37.703,48,25,48S2,37.703,2,25S12.297,2,25,2z M32.934,34.375 c0.423-1.298,2.405-14.234,2.65-16.783c0.074-0.772-0.17-1.285-0.648-1.514c-0.578-0.278-1.434-0.139-2.427,0.219 c-1.362,0.491-18.774,7.884-19.78,8.312c-0.954,0.405-1.856,0.847-1.856,1.487c0,0.45,0.267,0.703,1.003,0.966 c0.766,0.273,2.695,0.858,3.834,1.172c1.097,0.303,2.346,0.04,3.046-0.395c0.742-0.461,9.305-6.191,9.92-6.693 c0.614-0.502,1.104,0.141,0.602,0.644c-0.502,0.502-6.38,6.207-7.155,6.997c-0.941,0.959-0.273,1.953,0.358,2.351 c0.721,0.454,5.906,3.932,6.687,4.49c0.781,0.558,1.573,0.811,2.298,0.811C32.191,36.439,32.573,35.484,32.934,34.375z"></path>
+        </svg>
+      </span>
+      <a href="https://t.me/Haidene" target="_blank">@Haidene</a>
+    </div>
+  </body>
+</html>
